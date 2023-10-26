@@ -1,7 +1,6 @@
 include: package:flutter_lints/flutter.yaml
 analyzer:
   exclude:
-    - "**/*.chopper.dart"
     - "**/*.freezed.dart"
     - "**/*.g.dart"
     - "**/*.gen.dart"
