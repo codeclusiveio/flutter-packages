@@ -4,8 +4,13 @@ codeclusive-lints provides a list of rules for Dart and Flutter created and used
 Includes flutter-lints and custom set of rules created from [dart linter rules](https://dart.dev/tools/linter-rules)
 
 ## Usage
+To use lints please add following line to the proper files:
 
-To use lints please add following line to the analysis_options.yaml
+pubspec.yaml:
+codeclusive_lints:
+    path: packages/flutter_packages/codeclusive_lints
+
+analysis_options.yaml
 ```include: package:codeclusive_lints/analysis_options.yaml```
 
 ## Used rules:
