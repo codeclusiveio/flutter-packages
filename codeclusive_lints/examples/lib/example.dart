@@ -20,7 +20,7 @@ void main() {
   var secondMessage =
       'This is concatenated string: '; // ignore: prefer_final_locals
 
-  List<String> stringsToAdd = [
+  final List<String> stringsToAdd = [
     'Hello',
     'there',
     'fellow',
@@ -29,8 +29,12 @@ void main() {
   ];
 
   for (final element in stringsToAdd) {
-    secondMessage += element + ' '; // ignore: use_string_buffers
+    secondMessage += '${element} '; // ignore: use_string_buffers
   }
 
   print(secondMessage);
+
+  print(
+    'End of the very short example with very long and boring text to see if the lints works fine with this example code we\'ve created',
+  );
 }
