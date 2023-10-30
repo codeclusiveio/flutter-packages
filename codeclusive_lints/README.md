@@ -11,8 +11,11 @@ Dart 3.0.3
 To use lints please add following line to the proper files:
 
 pubspec.yaml:
-codeclusive_lints:
-    path: packages/flutter_packages/codeclusive_lints
+dependencies:
+    codeclusive_lints:
+        git:
+                url: https://github.com/codeclusiveio/flutter-packages.git
+                path: codeclusive_lints
 
 analysis_options.yaml
 ```include: package:codeclusive_lints/analysis_options.yaml```
