@@ -16,6 +16,7 @@ dependencies:
         git:
                 url: https://github.com/codeclusiveio/flutter-packages.git
                 path: codeclusive_lints
+                ref: c3b8bd1f979fd0b35f2dc418df37f640b4d7e537
 
 analysis_options.yaml
 ```include: package:codeclusive_lints/analysis_options.yaml```
