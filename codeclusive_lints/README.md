@@ -4,8 +4,8 @@ codeclusive-lints provides a list of rules for Dart and Flutter created and used
 Includes flutter-lints and custom set of rules created from [dart linter rules](https://dart.dev/tools/linter-rules)
 
 ## Requirements
-Flutter 3.10.4
-Dart 3.0.3
+- Flutter 3.10.4
+- Dart 3.0.3
 
 ## Usage
 To use lints please add following line to the proper files:
