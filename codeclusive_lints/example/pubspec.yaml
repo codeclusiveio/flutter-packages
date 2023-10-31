@@ -1,0 +1,22 @@
+name: example
+description: A new Flutter project.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+
+dependencies:
+  codeclusive_lints:
+    git:
+      url: https://github.com/codeclusiveio/flutter-packages.git
+      path: codeclusive_lints
+      ref: c3b8bd1f979fd0b35f2dc418df37f640b4d7e537
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
