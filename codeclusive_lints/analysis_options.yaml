@@ -1,4 +1,4 @@
 include: lib/analysis_options.yaml
 analyzer:
   exclude:
-    - 'examples'
+    - 'example'
