@@ -11,10 +11,6 @@ class CodeclusiveImagePicker {
   CodeclusiveImagePicker(this._imagePickerService, this._permissionsService);
 
   Future<PermissionStatus?> requestPermissions() async {
-    // final permissions = await permissionsService.getPermissionState();
-    // if (permissions != null && permissions.isPermanentlyDenied || permissions!.isDenied) {
-    //   CodeclusivePermissionRepository().goToSettings();
-    // }
     final hasAccess = await _permissionsService.requestPermissions();
     return hasAccess;
   }

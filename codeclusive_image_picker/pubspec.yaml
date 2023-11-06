@@ -7,7 +7,6 @@ environment:
   sdk: '>=3.0.3 <4.0.0'
   flutter: ">=3.10.4"
 
-# TODO(Wiktor Androsiuk): Check and cleanup the dependencies below
 dependencies:
   device_info_plus: ^9.1.0
   flutter:
