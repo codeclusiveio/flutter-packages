@@ -1,0 +1,28 @@
+name: codeclusive_image_picker
+description: Codeclusive package containing custom image picker functionality.
+version: 0.0.1
+homepage: https://codeclusive.io/
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+  flutter: ">=3.10.4"
+
+# TODO(Wiktor Androsiuk): Check and cleanup the dependencies below
+dependencies:
+  flutter:
+    sdk: flutter
+  photo_manager: ^2.5.1+1
+  permission_handler: ^10.2.0
+  collection: ^1.16.0
+  intl: ^0.18.0
+  flutter_svg: ^2.0.7
+  lottie: ^1.4.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  mocktail: ^0.3.0
+
+flutter:
+  uses-material-design: true
