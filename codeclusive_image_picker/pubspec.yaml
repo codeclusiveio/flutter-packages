@@ -9,8 +9,10 @@ environment:
 
 # TODO(Wiktor Androsiuk): Check and cleanup the dependencies below
 dependencies:
+  device_info_plus: ^9.1.0
   flutter:
     sdk: flutter
+  flutter_clean_architecture: ^5.0.4
   photo_manager: ^2.5.1+1
   permission_handler: ^10.2.0
   collection: ^1.16.0
