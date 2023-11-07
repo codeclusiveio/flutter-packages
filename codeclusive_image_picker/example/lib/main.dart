@@ -1,7 +1,3 @@
-import 'package:codeclusive_image_picker/repositories/codeclusive_image_picker_repository.dart';
-import 'package:codeclusive_image_picker/repositories/codeclusive_permission_repository.dart';
-import 'package:codeclusive_image_picker/services/codeclusive_image_picker_service.dart';
-import 'package:codeclusive_image_picker/services/codeclusive_permissions_service.dart';
 import 'package:codeclusive_image_picker/use_cases/codeclusive_image_picker_use_case.dart';
 import 'package:example/single_image_view.dart';
 import 'package:flutter/material.dart';
@@ -18,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Codeclusive Image Picker example',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Codeclusive Image Picker example page'),
     );
   }
 }
@@ -42,10 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _permissions = 'Click button to check permissions';
   List<AssetEntity> _images = [];
 
-  CodeclusiveImagePicker codeclusiveImagePickerUseCase = CodeclusiveImagePicker(
-    CodeclusiveImagePickerService(CodeclusiveImagePickerRepository()),
-    CodeclusivePermissionsService(CodeclusivePermissionRepository()),
-  );
+  CCImagePicker codeclusiveImagePickerUseCase = CCImagePicker();
 
   void _showGalleryStatistics(List<AssetPathEntity> albums, List<AssetEntity> images) {
     setState(() {
@@ -114,8 +107,8 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: () async {
               final albums = await codeclusiveImagePickerUseCase.getAlbums();
-              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums![0], 1) ?? [];
-              _showGalleryStatistics(albums, images);
+              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[0], 0);
+              _showGalleryStatistics([albums[0]], images);
             },
             tooltip: 'Scan gallery',
             child: const Icon(Icons.sync),
@@ -127,7 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () async {
               final albums = await codeclusiveImagePickerUseCase.getAlbums();
               final images = await codeclusiveImagePickerUseCase.getAllImages();
-              _showGalleryStatistics(albums!, images!);
+              _showGalleryStatistics(albums, images);
             },
             tooltip: 'Scan gallery',
             child: const Icon(Icons.all_inclusive),
@@ -150,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Icon(Icons.security),
           ),
         ],
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
