@@ -2,18 +2,15 @@ import 'dart:io';
 
 import 'package:codeclusive_image_picker/repositories/codeclusive_permission_repository.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:logger/logger.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 /// This service is used to ask for required permissions for codeclusive_image_picker.
 class CodeclusivePermissionsService {
   late final CodeclusivePermissionRepository _codeclusivePermissionRepository;
-  late final Logger _logger;
 
   CodeclusivePermissionsService() {
     _codeclusivePermissionRepository = CodeclusivePermissionRepository();
-    _logger = Logger();
   }
 
   /// Method used for asking for permissions required for codeclusive_image_picker which returns [PermissionStatus]?.
@@ -41,8 +38,7 @@ class CodeclusivePermissionsService {
       await _codeclusivePermissionRepository.getPermissionsIOS;
       return await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
     } catch (e, s) {
-      _logger.e('[CodeclusivePermissionService]: Error while requesting permissions', error: e, stackTrace: s);
-      return null;
+      throw Exception('[CodeclusivePermissionService]: Error while requesting permissions. Error: $e, stackTrace: $s');
     }
   }
 
@@ -62,8 +58,7 @@ class CodeclusivePermissionsService {
       }
       return await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
     } catch (e, s) {
-      _logger.e('[CodeclusivePermissionService]: Error while checking permissions', error: e, stackTrace: s);
-      return null;
+      throw Exception('[CodeclusivePermissionService]: Error while checking permissions. Error: $e, stackTrace: $s');
     }
   }
 

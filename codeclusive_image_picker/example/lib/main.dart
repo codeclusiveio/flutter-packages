@@ -14,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Codeclusive Image Picker example',
+      title: 'CC Image Picker example',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Codeclusive Image Picker example page'),
+      home: const MyHomePage(title: 'CC Image Picker example page'),
     );
   }
 }
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _showGalleryStatistics(List<AssetPathEntity> albums, List<AssetEntity> images) {
     setState(() {
-      _statistics = albums.map((e) => e.name).toString();
+      _statistics = 'Selected albums: ${albums.map((e) => e.name).toString()}';
       _images = images;
     });
   }
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: () async {
               final albums = await codeclusiveImagePickerUseCase.getAlbums();
-              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[0], 0);
+              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[1], 0);
               _showGalleryStatistics([albums[0]], images);
             },
             tooltip: 'Scan gallery',

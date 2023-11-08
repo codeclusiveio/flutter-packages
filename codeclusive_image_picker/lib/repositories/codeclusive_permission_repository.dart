@@ -6,15 +6,36 @@ import 'package:photo_manager/photo_manager.dart';
 class CodeclusivePermissionRepository implements CodeclusivePermissionsInterface {
   /// Request storage permissions. *Required for Android SDK < 33*
   @override
-  Future<PermissionStatus> get getStoragePermissionsAndroid => Permission.storage.request();
+  Future<PermissionStatus> get getStoragePermissionsAndroid async {
+    try {
+      return await Permission.storage.request();
+    } catch (s, e) {
+      throw Exception(
+          '[CodeclusivePermissionRepository]: Error while requesting storage permissions. Error: $e, stackTrace: $s');
+    }
+  }
 
   /// Request photos permissions. *Required for Android SDK >= 33*
   @override
-  Future<PermissionStatus> get getPhotosPermissionsAndroid => Permission.photos.request();
+  Future<PermissionStatus> get getPhotosPermissionsAndroid async {
+    try {
+      return await Permission.photos.request();
+    } catch (s, e) {
+      throw Exception(
+          '[CodeclusivePermissionRepository]: Error while requesting photos permissions. Error: $e, stackTrace: $s');
+    }
+  }
 
   /// Request photos permissions. *Required for IOS*
   @override
-  Future<PermissionState> get getPermissionsIOS => PhotoManager.requestPermissionExtend();
+  Future<PermissionState> get getPermissionsIOS async {
+    try {
+      return await PhotoManager.requestPermissionExtend();
+    } catch (s, e) {
+      throw Exception(
+          '[CodeclusivePermissionRepository]: Error while requesting photos permissions. Error: $e, stackTrace: $s');
+    }
+  }
 
   /// Returns current permission status
   @override
@@ -23,13 +44,23 @@ class CodeclusivePermissionRepository implements CodeclusivePermissionsInterface
   /// Returns current permission state
   @override
   bool getPermissionState(PermissionState? permissionState) {
-    if (permissionState == null) return false;
-    return permissionState.hasAccess;
+    try {
+      if (permissionState == null) return false;
+      return permissionState.hasAccess;
+    } catch (s, e) {
+      throw Exception(
+          '[CodeclusivePermissionRepository]: Error while getting permission state. Error: $e, stackTrace: $s');
+    }
   }
 
   /// Opens system app settings
   @override
   Future<void> goToSettings() async {
-    await PhotoManager.openSetting();
+    try {
+      await PhotoManager.openSetting();
+    } catch (s, e) {
+      throw Exception(
+          '[CodeclusivePermissionRepository]: Error while opening system setting page. Error: $e, stackTrace: $s');
+    }
   }
 }

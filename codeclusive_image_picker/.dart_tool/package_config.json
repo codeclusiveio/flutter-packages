@@ -188,12 +188,6 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "logger",
-      "rootUri": "file:///Users/wiktorandrosiuk/.pub-cache/hosted/pub.dev/logger-2.0.2+1",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
       "name": "logging",
       "rootUri": "file:///Users/wiktorandrosiuk/.pub-cache/hosted/pub.dev/logging-1.2.0",
       "packageUri": "lib/",
@@ -530,7 +524,7 @@
       "languageVersion": "3.0"
     }
   ],
-  "generated": "2023-11-07T12:57:36.246535Z",
+  "generated": "2023-11-08T07:34:23.611566Z",
   "generator": "pub",
   "generatorVersion": "3.1.5"
 }

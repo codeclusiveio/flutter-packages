@@ -1,11 +1,9 @@
 import 'package:codeclusive_image_picker/interfaces/codeclusive_image_picker_interface.dart';
-import 'package:logger/logger.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 /// Repository used for reading content of device gallery such as albums and photos
 class CodeclusiveImagePickerRepository implements CodeclusiveImagePickerInterface {
   CodeclusiveImagePickerRepository();
-  final Logger _logger = Logger();
 
   /// This method returns [List]<[AssetPathEntity]> of albums stored in device gallery
   /// Requires:
@@ -25,8 +23,7 @@ class CodeclusiveImagePickerRepository implements CodeclusiveImagePickerInterfac
         onlyAll: false,
       );
     } catch (e, s) {
-      _logger.e('[CodeclusiveImagePicker]: Error while fetching album list: $e', error: e, stackTrace: s);
-      return [];
+      throw Exception('[CodeclusiveImagePickerRepository]: Error while fetching album list. Error: $e, stackTrace: $s');
     }
     return albums;
   }
@@ -37,8 +34,9 @@ class CodeclusiveImagePickerRepository implements CodeclusiveImagePickerInterfac
     int count = 0;
     try {
       count = await PhotoManager.getAssetCount();
-    } catch (e) {
-      return 0;
+    } catch (e, s) {
+      throw Exception(
+          '[CodeclusiveImagePickerRepository]: Error while getting assets count. Error: $e, stackTrace: $s');
     }
     return count;
   }

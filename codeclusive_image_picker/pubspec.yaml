@@ -12,7 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_clean_architecture: ^5.0.4
-  logger: ^2.0.2+1
   photo_manager: ^2.5.1+1
   permission_handler: ^10.2.0
   collection: ^1.16.0
