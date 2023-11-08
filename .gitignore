@@ -8,13 +8,13 @@
 .buildlog/
 .history
 .svn/
-migrate_working_dir/
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
+**/.idea/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -22,29 +22,53 @@ migrate_working_dir/
 #.vscode/
 
 # Flutter/Dart/Pub related
-# Libraries should not include pubspec.lock, per https://dart.dev/guides/libraries/private-files#pubspeclock.
-/pubspec.lock
 **/doc/api/
+**/ios/Flutter/.last_build_id
 .dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
 .packages
-build/
+.pub-cache/
+.pub/
+/build/
+
+**/.dart_tool/
 **/.flutter-plugins
 **/.flutter-plugins-dependencies
-**/.fvm
+**/.packages
+**/.pub-cache/
+**/.pub/
+**/build/
+**/.fvm/flutter_sdk
+**/.iml
 
-# Ignore for codeclusive_image_picker
-codeclusive_image_picker/.flutter-plugins/
-codeclusive_image_picker/.flutter-plugins-dependencies/
-codeclusive_image_picker/.fvm/
-codeclusive_image_picker/CHANGELOG.md
-codeclusive_image_picker/codeclusive_image_picker.iml
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
 
-# Ignore for codeclusive_lints
-codeclusive_lints/ios/Flutter/flutter_export_environment.sh
-codeclusive_lints/ios/Flutter/Generated.xcconfig
-codeclusive_lints/android/local.properties
-codeclusive_lints/.flutter-plugins/
-codeclusive_lints/.flutter-plugins-dependencies/
-codeclusive_lints/.fvm/
-codeclusive_lints/CHANGELOG.md
-codeclusive_lints/codeclusive_lints.iml
+# Web related
+**/lib/generated_plugin_registrant.dart
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+build/
+dist/
+node_modules/
+.secret-*
+.gradle/
+
+local.properties
+
+*.jks
+key*.properties
+report.xml
+
+key-app-store.json
+coverage
+
+#push fvm_config.json but ignore flutter_sdk folder
+.fvm/flutter_sdk
+**/ios/vendor/
