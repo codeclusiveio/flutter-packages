@@ -33,5 +33,5 @@ build/
 **/.flutter-plugins
 **/.flutter-plugins-dependencies
 **/.fvm
-./CHANGELOG.md
-./codeclusive_image_picker.iml
+CHANGELOG.md
+codeclusive_image_picker.iml
