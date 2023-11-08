@@ -69,7 +69,7 @@ class CCImagePicker {
   /// Takes one parameter
   ///
   /// - [AssetPathEntity] album - select album from witch photos will be fetched
-  Future<List<AssetEntity>> getImagesFromAlbum(AssetPathEntity album, int page) async {
+  Future<List<AssetEntity>> getImagesFromAlbum(AssetPathEntity album) async {
     try {
       final hasAccess = await requestPermissions();
 

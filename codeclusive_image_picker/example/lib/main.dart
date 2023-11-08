@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: () async {
               final albums = await codeclusiveImagePickerUseCase.getAlbums();
-              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[1], 0);
+              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[1]);
               _showGalleryStatistics([albums[0]], images);
             },
             tooltip: 'Scan gallery',
