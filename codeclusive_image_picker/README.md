@@ -1,39 +1,29 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Codeclusive Image Picker is a package creaated by Codeclusive.io team. It was developed for managing permissions and picking images more convinient way. 
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
+- ```requestPermissions()``` - request permissions required for fetching data from device gallery
+- ```getPermissionStatus()``` - get current permissions status
+- ```goToAppSettings()``` - open app system settings
+- ```getAlbums()``` - get list of albums stored on the device
+- ```getImagesFromAlbum(AssetPathEntity album)``` - get list of images from specified album
+- ```getImagesFromAlbumPaginated(AssetPathEntity album, int page, {int? maxBatchSize = 30)``` - get paginated images list from album. Can specify maximum batch size of page.
+- ```getAllImages()``` - get all of the images from the device
+ 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### Requirements
+- Flutter 3.13.9
+- Dart 3.1.5
 
 ## Usage
+To use cc_image_picker please add following line to the proper files:
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
+pubspec.yaml:
+```dependencies:
+codeclusive_image_picker:
+    git:
+        url: https://github.com/codeclusiveio/flutter-packages.git
+        path: codeclusive_image_picker
+        ref: TODO: Add proper ref
 ```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
