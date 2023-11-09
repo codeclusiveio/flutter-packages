@@ -49,10 +49,10 @@
 	<true/>
 
 	<key>NSCameraUsageDescription</key>
-	<string>This lets you create jobs or add photos to a job by taking a photo</string>
+    <string>This allows You to take pictures inside your app</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>This will save photos captured in the app to your image library</string>
+    <string>This allows You to save photos captured in the app to your image gallery</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>This lets you add or create jobs from photos in your image library</string>
+    <string>This allows You to upload pictures from your gallery</string>
 </dict>
 </plist>
