@@ -1,15 +1,18 @@
-import 'package:codeclusive_image_picker/interfaces/codeclusive_image_picker_interface.dart';
+import 'package:codeclusive_image_picker/interfaces/image_picker_interface.dart';
+import 'package:codeclusive_image_picker/utils/image_picker_exception.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 /// Repository used for reading content of device gallery such as albums and photos
-class CodeclusiveImagePickerRepository implements CodeclusiveImagePickerInterface {
-  CodeclusiveImagePickerRepository();
+class ImagePickerRepository implements ImagePickerInterface {
+  ImagePickerRepository();
 
   /// This method returns [List]<[AssetPathEntity]> of albums stored in device gallery
   /// Requires:
   ///
   /// - Storage permissions for Android SDK < 33,
   /// - Photos permissions for IOS and Android SDK >= 33
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   @override
   Future<List<AssetPathEntity>> fetchAlbumList() async {
     List<AssetPathEntity> albums = [];
@@ -23,20 +26,21 @@ class CodeclusiveImagePickerRepository implements CodeclusiveImagePickerInterfac
         onlyAll: false,
       );
     } catch (e, s) {
-      throw Exception('[CodeclusiveImagePickerRepository]: Error while fetching album list. Error: $e, stackTrace: $s');
+      throw GalleryScanException('Error while fetching album list. Error $e, StackTrace :$s');
     }
     return albums;
   }
 
   /// This method returns [int] - number of all photos stored on the device
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   @override
   Future<int> getImagesCount() async {
     int count = 0;
     try {
       count = await PhotoManager.getAssetCount();
     } catch (e, s) {
-      throw Exception(
-          '[CodeclusiveImagePickerRepository]: Error while getting assets count. Error: $e, stackTrace: $s');
+      throw GalleryScanException('Error while getting assets count. Error: $e, stackTrace: $s');
     }
     return count;
   }

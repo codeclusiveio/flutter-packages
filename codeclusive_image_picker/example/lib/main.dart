@@ -1,4 +1,4 @@
-import 'package:codeclusive_image_picker/use_cases/codeclusive_image_picker_use_case.dart';
+import 'package:codeclusive_image_picker/use_cases/image_picker_use_case.dart';
 import 'package:example/single_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
@@ -107,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: () async {
               final albums = await codeclusiveImagePickerUseCase.getAlbums();
-              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[1]);
+              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[0]);
               _showGalleryStatistics([albums[0]], images);
             },
             tooltip: 'Scan gallery',
@@ -131,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
           FloatingActionButton(
             onPressed: () async {
               await codeclusiveImagePickerUseCase.requestPermissions().then((value) {
-                if (value != null && value.isPermanentlyDenied || value!.isDenied) {
+                if (value.isPermanentlyDenied || value.isDenied) {
                   codeclusiveImagePickerUseCase.goToAppSettings();
                 }
 

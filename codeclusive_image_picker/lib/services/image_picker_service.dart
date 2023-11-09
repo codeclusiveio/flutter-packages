@@ -1,12 +1,13 @@
-import 'package:codeclusive_image_picker/repositories/codeclusive_image_picker_repository.dart';
+import 'package:codeclusive_image_picker/repositories/image_picker_repository.dart';
+import 'package:codeclusive_image_picker/utils/image_picker_exception.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-/// This service is responsible for operations on a data acquired from [CodeclusiveImagePickerRepository]
-class CodeclusiveImagePickerService {
-  late final CodeclusiveImagePickerRepository _codeclusiveImagePickerRepository;
+/// This service is responsible for operations on a data acquired from [ImagePickerRepository]
+class ImagePickerService {
+  late final ImagePickerRepository _codeclusiveImagePickerRepository;
 
-  CodeclusiveImagePickerService() {
-    _codeclusiveImagePickerRepository = CodeclusiveImagePickerRepository();
+  ImagePickerService() {
+    _codeclusiveImagePickerRepository = ImagePickerRepository();
   }
 
   /// This method returns [List]<[AssetPathEntity]> containing all albums stored on a device
@@ -17,17 +18,23 @@ class CodeclusiveImagePickerService {
   /// it takes one parameter:
   ///
   /// - [AssetPathEntity] album - specifies from witch album photos should be fetched
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetEntity>> fetchImagesFromAlbum(AssetPathEntity album) async {
     try {
       final imagesCount = await album.assetCountAsync;
-      final media = await album.getAssetListPaged(size: imagesCount, page: 0);
-      if (media.isEmpty) {
-        return [];
+      print('wiktor-log ic: $imagesCount');
+      if (imagesCount > 0) {
+        final media = await album.getAssetListPaged(size: imagesCount, page: 0);
+
+        if (media.isEmpty) {
+          return [];
+        }
+        return media;
       }
-      return media;
+      return [];
     } catch (e, s) {
-      throw Exception(
-          '[CodeclusiveImagePickerRepository]: Error while fetching images from album: ${album.name}. Error: $e, stackTrace: $s');
+      throw GalleryScanException('Error while fetching images from album: ${album.name}. Error: $e, stackTrace: $s');
     }
   }
 
@@ -38,6 +45,8 @@ class CodeclusiveImagePickerService {
   /// - [AssetPathEntity] album - specifies from witch album photos should be fetched
   /// -  [int] page - specify result page
   /// -  [int]? maxBatchSize - specify maximum size of returned images list
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetEntity>> fetchPaginatedImages(
     AssetPathEntity album,
     int page, {
@@ -46,12 +55,14 @@ class CodeclusiveImagePickerService {
     try {
       return await album.getAssetListPaged(page: page, size: maxBatchSize ?? 30);
     } catch (e, s) {
-      throw Exception(
-          '[CodeclusiveImagePickerRepository]: Error while fetching paginated images from album: ${album.name}. Error: $e, stackTrace: $s');
+      throw GalleryScanException(
+          'Error while fetching paginated images from album: ${album.name}. Error: $e, stackTrace: $s');
     }
   }
 
   /// This method returns paginated [List]<[AssetEntity]> containing all of images from device
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetEntity>> fetchAllImages() async {
     try {
       final albums = await _codeclusiveImagePickerRepository.fetchAlbumList();
@@ -69,7 +80,7 @@ class CodeclusiveImagePickerService {
       }
       return images;
     } catch (e, s) {
-      throw Exception('[CodeclusiveImagePickerRepository]: Error while fetching all images. Error: $e, stackTrace: $s');
+      throw GalleryScanException('Error while fetching all images. Error: $e, stackTrace: $s');
     }
   }
 
@@ -77,6 +88,8 @@ class CodeclusiveImagePickerService {
   ///
   /// if [AssetPathEntity] album parameter is not null then it returns number of images in specified album
   /// otherwise it return number of all images stored on the device
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<int> getImagesCount({AssetPathEntity? album}) async {
     try {
       if (album != null) {
@@ -84,8 +97,8 @@ class CodeclusiveImagePickerService {
       }
       return await _codeclusiveImagePickerRepository.getImagesCount();
     } catch (e, s) {
-      throw Exception(
-          '[CodeclusiveImagePickerRepository]: Error while getting images count${album != null ? ' from album: ${album.name}' : ''}. Error: $e, stackTrace: $s');
+      throw GalleryScanException(
+          'Error while getting images count${album != null ? ' from album: ${album.name}' : ''}. Error: $e, stackTrace: $s');
     }
   }
 }

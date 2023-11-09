@@ -1,16 +1,17 @@
 import 'dart:io';
 
-import 'package:codeclusive_image_picker/repositories/codeclusive_permission_repository.dart';
+import 'package:codeclusive_image_picker/repositories/permission_repository.dart';
+import 'package:codeclusive_image_picker/utils/permission_exception.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 /// This service is used to ask for required permissions for codeclusive_image_picker.
-class CodeclusivePermissionsService {
-  late final CodeclusivePermissionRepository _codeclusivePermissionRepository;
+class PermissionsService {
+  late final PermissionRepository _codeclusivePermissionRepository;
 
-  CodeclusivePermissionsService() {
-    _codeclusivePermissionRepository = CodeclusivePermissionRepository();
+  PermissionsService() {
+    _codeclusivePermissionRepository = PermissionRepository();
   }
 
   /// Method used for asking for permissions required for codeclusive_image_picker which returns [PermissionStatus]?.
@@ -18,7 +19,9 @@ class CodeclusivePermissionsService {
   /// it requires asking for [Permission.photos] permissions. Before Android SDK 33 it requires [Permission.storage] permissions.
   /// Android  permissions  returns [PermissionStatus].
   /// IOS permissions returns [PermissionState].
-  Future<PermissionStatus?> requestPermissions() async {
+  ///
+  /// When error occurs this method throws [PermissionStateException]
+  Future<PermissionStatus> requestPermissions() async {
     try {
       if (Platform.isAndroid) {
         final androidInfo = await DeviceInfoPlugin().androidInfo;
@@ -38,14 +41,16 @@ class CodeclusivePermissionsService {
       await _codeclusivePermissionRepository.getPermissionsIOS;
       return await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
     } catch (e, s) {
-      throw Exception('[CodeclusivePermissionService]: Error while requesting permissions. Error: $e, stackTrace: $s');
+      throw PermissionRequestException('Error while requesting permissions. Error: $e, stackTrace: $s');
     }
   }
 
   /// Method used for fetching information about current [PermissionStatus]
   /// Returns [Permission.photos] for IOS and Android SDK above version 33
   /// or [Permission.storage] for Android SDK  lower than version 33
-  Future<PermissionStatus?> getPermissionState() async {
+  ///
+  /// When error occurs this method throws [PermissionRequestException]
+  Future<PermissionStatus> getPermissionState() async {
     try {
       if (Platform.isAndroid) {
         final androidInfo = await DeviceInfoPlugin().androidInfo;
@@ -58,7 +63,7 @@ class CodeclusivePermissionsService {
       }
       return await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
     } catch (e, s) {
-      throw Exception('[CodeclusivePermissionService]: Error while checking permissions. Error: $e, stackTrace: $s');
+      throw PermissionRequestException('Error while checking permissions. Error: $e, stackTrace: $s');
     }
   }
 

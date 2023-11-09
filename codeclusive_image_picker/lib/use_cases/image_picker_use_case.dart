@@ -1,5 +1,5 @@
-import 'package:codeclusive_image_picker/services/codeclusive_image_picker_service.dart';
-import 'package:codeclusive_image_picker/services/codeclusive_permissions_service.dart';
+import 'package:codeclusive_image_picker/services/image_picker_service.dart';
+import 'package:codeclusive_image_picker/services/permissions_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -16,29 +16,29 @@ import 'package:photo_manager/photo_manager.dart';
 /// - [READ_MEDIA_AUDIO]
 /// - [READ_MEDIA_VIDEO]
 class CCImagePicker {
-  late final CodeclusiveImagePickerService _imagePickerService;
-  late final CodeclusivePermissionsService _permissionsService;
+  late final ImagePickerService _imagePickerService;
+  late final PermissionsService _permissionsService;
 
   CCImagePicker() {
-    _imagePickerService = CodeclusiveImagePickerService();
-    _permissionsService = CodeclusivePermissionsService();
+    _imagePickerService = ImagePickerService();
+    _permissionsService = PermissionsService();
   }
 
   /// This method requests gallery permissions popup and returns [PermissionStatus]?
-  Future<PermissionStatus?> requestPermissions() async {
+  Future<PermissionStatus> requestPermissions() async {
     try {
       return await _permissionsService.requestPermissions();
-    } catch (e, s) {
-      throw Exception('[CCImagePicker]: Error while requesting permissions. Error: $e, StackTrace: $s');
+    } catch (e) {
+      rethrow;
     }
   }
 
   /// This method returns current [PermissionStatus]?
-  Future<PermissionStatus?> getPermissionStatus() async {
+  Future<PermissionStatus> getPermissionStatus() async {
     try {
       return await _permissionsService.getPermissionState();
-    } catch (e, s) {
-      throw Exception('[CCImagePicker]: Error while getting permission state. Error: $e, StackTrace: $s');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -46,8 +46,8 @@ class CCImagePicker {
   Future<void> goToAppSettings() async {
     try {
       _permissionsService.goToAppSettings();
-    } catch (e, s) {
-      throw Exception('[CCImagePicker]: Error while navigating to system settings. Error: $e, StackTrace: $s');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -55,13 +55,13 @@ class CCImagePicker {
   Future<List<AssetPathEntity>> getAlbums() async {
     try {
       final hasAccess = await requestPermissions();
-      if (hasAccess != null && hasAccess.isGranted) {
+      if (hasAccess.isGranted) {
         return await _imagePickerService.fetchAlbums();
       }
 
       return [];
-    } catch (e, s) {
-      throw Exception('[CCImagePicker]: Error while fetching albums. Error: $e, StackTrace: $s');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -73,14 +73,14 @@ class CCImagePicker {
     try {
       final hasAccess = await requestPermissions();
 
-      if (hasAccess != null && hasAccess.isGranted) {
+      if (hasAccess.isGranted) {
         final images = await _imagePickerService.fetchImagesFromAlbum(album);
         return images;
       }
 
       return [];
-    } catch (e, s) {
-      throw Exception('[CCImagePicker]: Error while getting images from album. Error: $e, StackTrace: $s');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -98,14 +98,14 @@ class CCImagePicker {
     try {
       final hasAccess = await requestPermissions();
 
-      if (hasAccess != null && hasAccess.isGranted) {
+      if (hasAccess.isGranted) {
         final images = await _imagePickerService.fetchPaginatedImages(album, page, maxBatchSize: maxBatchSize);
         return images;
       }
 
       return [];
-    } catch (e, s) {
-      throw Exception('[CCImagePicker]: Error while getting images from album. Error: $e, StackTrace: $s');
+    } catch (e) {
+      rethrow;
     }
   }
 
@@ -114,14 +114,14 @@ class CCImagePicker {
     try {
       final hasAccess = await requestPermissions();
 
-      if (hasAccess != null && hasAccess.isGranted) {
+      if (hasAccess.isGranted) {
         final images = await _imagePickerService.fetchAllImages();
         return images;
       }
 
       return [];
-    } catch (e, s) {
-      throw Exception('[CCImagePicker]: Error while getting all images. Error: $e, StackTrace: $s');
+    } catch (e) {
+      rethrow;
     }
   }
 }
