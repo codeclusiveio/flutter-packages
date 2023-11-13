@@ -1,5 +1,5 @@
-import 'package:codeclusive_image_picker/interfaces/image_picker_interface.dart';
-import 'package:codeclusive_image_picker/utils/image_picker_exception.dart';
+import 'package:codeclusive_image_picker/src/interfaces/image_picker_interface.dart';
+import 'package:codeclusive_image_picker/src/models/image_picker_exception.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 /// Repository used for reading content of device gallery such as albums and photos

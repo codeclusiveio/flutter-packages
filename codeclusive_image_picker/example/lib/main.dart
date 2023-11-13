@@ -1,4 +1,4 @@
-import 'package:codeclusive_image_picker/use_cases/image_picker_use_case.dart';
+import 'package:codeclusive_image_picker/cc_image_picker.dart';
 import 'package:example/single_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _permissions = 'Click button to check permissions';
   List<AssetEntity> _images = [];
 
-  CCImagePicker codeclusiveImagePickerUseCase = CCImagePicker();
+  CCImagePicker codeclusiveImagePicker = CCImagePicker();
 
   void _showGalleryStatistics(List<AssetPathEntity> albums, List<AssetEntity> images) {
     setState(() {
@@ -106,8 +106,8 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           FloatingActionButton(
             onPressed: () async {
-              final albums = await codeclusiveImagePickerUseCase.getAlbums();
-              final images = await codeclusiveImagePickerUseCase.getImagesFromAlbum(albums[0]);
+              final albums = await codeclusiveImagePicker.getAlbums();
+              final images = await codeclusiveImagePicker.getImagesFromAlbum(albums[0]);
               _showGalleryStatistics([albums[0]], images);
             },
             tooltip: 'Scan gallery',
@@ -118,8 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           FloatingActionButton(
             onPressed: () async {
-              final albums = await codeclusiveImagePickerUseCase.getAlbums();
-              final images = await codeclusiveImagePickerUseCase.getAllImages();
+              final albums = await codeclusiveImagePicker.getAlbums();
+              final images = await codeclusiveImagePicker.getAllImages();
               _showGalleryStatistics(albums, images);
             },
             tooltip: 'Scan gallery',
@@ -130,9 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           FloatingActionButton(
             onPressed: () async {
-              await codeclusiveImagePickerUseCase.requestPermissions().then((value) {
+              await codeclusiveImagePicker.requestPermissions().then((value) {
                 if (value.isPermanentlyDenied || value.isDenied) {
-                  codeclusiveImagePickerUseCase.goToAppSettings();
+                  codeclusiveImagePicker.goToAppSettings();
                 }
 
                 _showPermissionsSettings(value.isGranted);

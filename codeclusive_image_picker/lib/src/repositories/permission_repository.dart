@@ -1,5 +1,5 @@
-import 'package:codeclusive_image_picker/interfaces/permissions_interface.dart';
-import 'package:codeclusive_image_picker/utils/permission_exception.dart';
+import 'package:codeclusive_image_picker/src/interfaces/permissions_interface.dart';
+import 'package:codeclusive_image_picker/src/models/permission_exception.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';
 

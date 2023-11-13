@@ -8,6 +8,14 @@ abstract class PermissionException implements Exception {
     if (message is String) return '$result: $message';
     return result;
   }
+
+  @override
+  bool operator ==(Object other) {
+    return other is PermissionException && other.message == message;
+  }
+
+  @override
+  int get hashCode => message.hashCode;
 }
 
 class PermissionRequestException extends PermissionException {

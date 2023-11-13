@@ -1,5 +1,5 @@
-import 'package:codeclusive_image_picker/services/image_picker_service.dart';
-import 'package:codeclusive_image_picker/services/permissions_service.dart';
+import 'package:codeclusive_image_picker/src/services/image_picker_service.dart';
+import 'package:codeclusive_image_picker/src/services/permissions_service.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -25,6 +25,8 @@ class CCImagePicker {
   }
 
   /// This method requests gallery permissions popup and returns [PermissionStatus]?
+  ///
+  /// When error occurs this method throws [PermissionStateException]
   Future<PermissionStatus> requestPermissions() async {
     try {
       return await _permissionsService.requestPermissions();
@@ -34,6 +36,8 @@ class CCImagePicker {
   }
 
   /// This method returns current [PermissionStatus]?
+  ///
+  /// When error occurs this method throws [PermissionRequestException]
   Future<PermissionStatus> getPermissionStatus() async {
     try {
       return await _permissionsService.getPermissionState();
@@ -52,6 +56,8 @@ class CCImagePicker {
   }
 
   /// This method returns [List]<[AssetPathEntity]> containing gallery albums from the device
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetPathEntity>> getAlbums() async {
     try {
       final hasAccess = await requestPermissions();
@@ -68,7 +74,9 @@ class CCImagePicker {
   /// This method returns  __[List]<[AssetEntity]>__ containing all images from specified albums from the device.
   /// Takes one parameter
   ///
-  /// - [AssetPathEntity] album - select album from witch photos will be fetched
+  /// - [AssetPathEntity] album - select album from which photos will be fetched
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetEntity>> getImagesFromAlbum(AssetPathEntity album) async {
     try {
       final hasAccess = await requestPermissions();
@@ -90,6 +98,8 @@ class CCImagePicker {
   /// - [AssetPathEntity] album - select album from witch photos will be fetched
   /// -  [int] page - specify result page
   /// -  [int]? maxBatchSize - specify maximum size of returned images list
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetEntity>> getImagesFromAlbumPaginated(
     AssetPathEntity album,
     int page, {
@@ -110,6 +120,8 @@ class CCImagePicker {
   }
 
   /// This function returns __[List]<[AssetEntity]>__ of images stored on the device
+  ///
+  /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetEntity>> getAllImages() async {
     try {
       final hasAccess = await requestPermissions();

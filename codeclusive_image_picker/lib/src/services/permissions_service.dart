@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:codeclusive_image_picker/repositories/permission_repository.dart';
-import 'package:codeclusive_image_picker/utils/permission_exception.dart';
+import 'package:codeclusive_image_picker/src/models/permission_exception.dart';
+import 'package:codeclusive_image_picker/src/repositories/permission_repository.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';

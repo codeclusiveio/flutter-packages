@@ -1,5 +1,5 @@
-import 'package:codeclusive_image_picker/repositories/image_picker_repository.dart';
-import 'package:codeclusive_image_picker/utils/image_picker_exception.dart';
+import 'package:codeclusive_image_picker/src/models/image_picker_exception.dart';
+import 'package:codeclusive_image_picker/src/repositories/image_picker_repository.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 /// This service is responsible for operations on a data acquired from [ImagePickerRepository]
