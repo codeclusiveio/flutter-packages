@@ -17,7 +17,7 @@ class ImagePickerService {
   ///
   /// it takes one parameter:
   ///
-  /// - [AssetPathEntity] album - specifies from witch album photos should be fetched
+  /// - [AssetPathEntity] album - specifies from which album photos should be fetched
   ///
   /// When error occurs this method throws [GalleryScanException]
   Future<List<AssetEntity>> fetchImagesFromAlbum(AssetPathEntity album) async {
@@ -42,7 +42,7 @@ class ImagePickerService {
   ///
   /// it takes three parameters:
   ///
-  /// - [AssetPathEntity] album - specifies from witch album photos should be fetched
+  /// - [AssetPathEntity] album - specifies from which album photos should be fetched
   /// -  [int] page - specify result page
   /// -  [int]? maxBatchSize - specify maximum size of returned images list
   ///

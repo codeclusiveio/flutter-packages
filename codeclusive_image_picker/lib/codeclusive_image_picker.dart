@@ -95,7 +95,7 @@ class CCImagePicker {
   /// This method returns paginated __[List]<[AssetEntity]>__ containing images from specified albums from the device.
   /// Takes three parameters
   ///
-  /// - [AssetPathEntity] album - select album from witch photos will be fetched
+  /// - [AssetPathEntity] album - select album from which photos will be fetched
   /// -  [int] page - specify result page
   /// -  [int]? maxBatchSize - specify maximum size of returned images list
   ///
