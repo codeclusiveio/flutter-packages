@@ -1,4 +1,4 @@
-Codeclusive Image Picker is a package creaated by Codeclusive.io team. It was developed for managing permissions and picking images more convinient way. 
+Codeclusive Image Picker is a package created by Codeclusive.io team. It was developed for managing permissions and picking images more convinient way. 
 
 
 ## Getting started
@@ -71,4 +71,3 @@ await codeclusiveImagePicker.requestPermissions().then((value) {
 - ```getImagesFromAlbum(AssetPathEntity album)``` - get list of images from specified album
 - ```getImagesFromAlbumPaginated(AssetPathEntity album, int page, {int? maxBatchSize = 30)``` - get paginated images list from album. Can specify maximum batch size of page.
 - ```getAllImages()``` - get all of the images from the device
- 
