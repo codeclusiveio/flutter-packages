@@ -10,7 +10,7 @@ ___
 
 ## [codeclusive-lints](../codeclusive-image-picker/codeclusive_lints)
 ### Features
-**codeclusive-lints** provides a list of rules for Dart and Flutter. Includes flutter-lints and custom set of rules created from dart linter rules. This is a strict lint package that ensures the proper analysis of cour code. 
+**codeclusive-lints** provides a list of rules for Dart and Flutter. Includes flutter-lints and custom set of rules created from dart linter rules. This is a strict lint package that ensures the proper analysis of our code. 
 
 [Requirements](https://github.com/codeclusiveio/flutter-packages/tree/codeclusive-image-picker/codeclusive_lints#requirements)
 
