@@ -1,0 +1,26 @@
+name: example
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  codeclusive_image_picker:
+    path: ../
+  permission_handler_platform_interface: ^3.7.0
+  photo_manager: ^2.5.1+1
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  permission_handler: ^10.2.0
+
+flutter:
+  uses-material-design: true
