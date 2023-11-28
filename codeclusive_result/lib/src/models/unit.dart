@@ -2,6 +2,8 @@ import 'package:codeclusive_result/codeclusive_result.dart';
 import 'package:flutter/foundation.dart';
 
 @immutable
+
+///A class that represents a unit value (void)
 class Unit {
   const Unit();
 

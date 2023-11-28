@@ -1,5 +1,5 @@
 name: codeclusive_result
-description: A new Flutter package project.
+description: a package for handling results in a functional way.
 version: 0.0.1
 homepage: codeclusive.io
 publish_to: none
