@@ -15,7 +15,7 @@ Add `Codeclusive_result` to your Dart project's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  codeclusive_result: ^1.0.0
+  codeclusive_result: ^0.0.2
 ```
 
 # Usage

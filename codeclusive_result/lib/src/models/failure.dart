@@ -43,9 +43,9 @@ class Failure<F, S> implements Result<F, S> {
   }
 
   @override
-  bool operator ==(covariant Failure<F, S> other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other.value == value;
+    return other is Failure && other.value == value;
   }
 
   @override
