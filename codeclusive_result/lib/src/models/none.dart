@@ -22,10 +22,9 @@ class None<S> implements Option<S> {
   R fold<R>(R Function(S p1) onSome, R Function() onNone) => onNone();
 
   @override
-  bool operator ==(covariant None<S> other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
-    return true;
+    return other is None;
   }
 
   @override

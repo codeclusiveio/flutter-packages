@@ -42,9 +42,9 @@ class Success<F, S> implements Result<F, S> {
   }
 
   @override
-  bool operator ==(covariant Success<F, S> other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
-    return other.value == value;
+    return other is Success && other.value == value;
   }
 
   @override
