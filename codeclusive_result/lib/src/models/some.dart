@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:codeclusive_result/codeclusive_result.dart';
 import 'package:codeclusive_result/src/models/option.dart';
 
 class Some<S> implements Option<S> {
@@ -25,10 +26,9 @@ class Some<S> implements Option<S> {
   R fold<R>(R Function(S p1) onSome, R Function() onNone) => onSome(value);
 
   @override
-  bool operator ==(covariant Some<S> other) {
+  bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
-    return other.value == value;
+    return other is Some && other.value == value;
   }
 
   @override
