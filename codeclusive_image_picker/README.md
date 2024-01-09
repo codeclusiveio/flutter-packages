@@ -1,4 +1,4 @@
-Codeclusive Image Picker is a package created by Codeclusive.io team. It was developed for managing permissions and picking images more convinient way. 
+Codeclusive Image Picker is a package created by Codeclusive.io team. It was developed for managing permissions and picking images more convenient way. 
 
 
 ## Getting started
@@ -36,7 +36,7 @@ and also to the ```./ios/Runner/Info.plist```
 
 ### Usage
 To use ```codeclusive_image_picker``` please use instance of ```CCImagePicker``` class which contains all of the necessary functionalities of this package. 
-To declare ```CCImagePicker``` just simply add: ``` final CCImagePicker imgePicker = CCImagePicker();``` to your code.
+To declare ```CCImagePicker``` just simply add: ``` final CCImagePicker imagePicker = CCImagePicker();``` to your code.
 
 ### Example usage
 Getting and printing all of the albums from device gallery:

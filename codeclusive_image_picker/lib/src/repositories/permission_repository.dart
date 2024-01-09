@@ -1,3 +1,5 @@
+// Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
+// MIT license that can be found in the LICENSE file.
 import 'package:codeclusive_image_picker/src/interfaces/permissions_interface.dart';
 import 'package:codeclusive_image_picker/src/models/permission_exception.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -13,7 +15,8 @@ class PermissionRepository implements PermissionsInterface {
     try {
       return await Permission.storage.request();
     } catch (s, e) {
-      throw PermissionRequestException('[Error while requesting storage permissions. Error: $e, stackTrace: $s');
+      throw PermissionRequestException(
+          '[Error while requesting storage permissions. Error: $e, stackTrace: $s');
     }
   }
 
@@ -25,7 +28,8 @@ class PermissionRepository implements PermissionsInterface {
     try {
       return await Permission.photos.request();
     } catch (s, e) {
-      throw PermissionRequestException('Error while requesting photos permissions. Error: $e, stackTrace: $s');
+      throw PermissionRequestException(
+          'Error while requesting photos permissions. Error: $e, stackTrace: $s');
     }
   }
 
@@ -37,13 +41,15 @@ class PermissionRepository implements PermissionsInterface {
     try {
       return await PhotoManager.requestPermissionExtend();
     } catch (s, e) {
-      throw PermissionRequestException('Error while requesting photos permissions. Error: $e, stackTrace: $s');
+      throw PermissionRequestException(
+          'Error while requesting photos permissions. Error: $e, stackTrace: $s');
     }
   }
 
   /// Returns current permission status
   @override
-  Future<PermissionStatus> getHandlerStatus(Permission permission) => permission.status;
+  Future<PermissionStatus> getHandlerStatus(Permission permission) =>
+      permission.status;
 
   /// Returns current permission state
   ///
@@ -54,7 +60,8 @@ class PermissionRepository implements PermissionsInterface {
       if (permissionState == null) return false;
       return permissionState.hasAccess;
     } catch (s, e) {
-      throw PermissionStateException('Error while getting permission state. Error: $e, stackTrace: $s');
+      throw PermissionStateException(
+          'Error while getting permission state. Error: $e, stackTrace: $s');
     }
   }
 
@@ -66,7 +73,8 @@ class PermissionRepository implements PermissionsInterface {
     try {
       await PhotoManager.openSetting();
     } catch (s, e) {
-      throw PermissionRequestException('Error while opening system setting page. Error: $e, stackTrace: $s');
+      throw PermissionRequestException(
+          'Error while opening system setting page. Error: $e, stackTrace: $s');
     }
   }
 }

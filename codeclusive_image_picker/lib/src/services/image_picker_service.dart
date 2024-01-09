@@ -1,3 +1,5 @@
+// Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
+// MIT license that can be found in the LICENSE file.
 import 'package:codeclusive_image_picker/src/models/image_picker_exception.dart';
 import 'package:codeclusive_image_picker/src/repositories/image_picker_repository.dart';
 import 'package:photo_manager/photo_manager.dart';
@@ -11,7 +13,8 @@ class ImagePickerService {
   }
 
   /// This method returns [List]<[AssetPathEntity]> containing all albums stored on a device
-  Future<List<AssetPathEntity>> fetchAlbums() async => await _codeclusiveImagePickerRepository.fetchAlbumList();
+  Future<List<AssetPathEntity>> fetchAlbums() async =>
+      await _codeclusiveImagePickerRepository.fetchAlbumList();
 
   /// This method returns [List]<[AssetEntity]> containing all images in specified album
   ///
@@ -34,7 +37,8 @@ class ImagePickerService {
       }
       return [];
     } catch (e, s) {
-      throw GalleryScanException('Error while fetching images from album: ${album.name}. Error: $e, stackTrace: $s');
+      throw GalleryScanException(
+          'Error while fetching images from album: ${album.name}. Error: $e, stackTrace: $s');
     }
   }
 
@@ -53,7 +57,8 @@ class ImagePickerService {
     int? maxBatchSize,
   }) async {
     try {
-      return await album.getAssetListPaged(page: page, size: maxBatchSize ?? 30);
+      return await album.getAssetListPaged(
+          page: page, size: maxBatchSize ?? 30);
     } catch (e, s) {
       throw GalleryScanException(
           'Error while fetching paginated images from album: ${album.name}. Error: $e, stackTrace: $s');
@@ -74,13 +79,15 @@ class ImagePickerService {
       for (final album in albums) {
         final imagesCount = await album.assetCountAsync;
         if (imagesCount != 0) {
-          final imagesToAdd = await album.getAssetListRange(start: 0, end: imagesCount);
+          final imagesToAdd =
+              await album.getAssetListRange(start: 0, end: imagesCount);
           images.addAll(imagesToAdd);
         }
       }
       return images;
     } catch (e, s) {
-      throw GalleryScanException('Error while fetching all images. Error: $e, stackTrace: $s');
+      throw GalleryScanException(
+          'Error while fetching all images. Error: $e, stackTrace: $s');
     }
   }
 
