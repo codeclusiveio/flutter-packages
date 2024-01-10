@@ -102,10 +102,12 @@ result = Success(Unit());
 result = Unit.asSuccess();
 ```
 ## Id 
-id is most useful in fold methods
+id is most useful in fold methods. It returns the argument passed to the function.
 
 ```dart
 //this will return the value of Success if the result is Success.
 final successValue = result.fold((f) => throw Exception(failure), id);
 ```
 
+## License
+Copyright (c) 2023, Codeclusive. Use of this source code is governed by a MIT license that can be found in the LICENSE file.
