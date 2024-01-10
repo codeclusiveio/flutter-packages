@@ -1,6 +1,6 @@
 # Codeclusive_result
 
-`Codeclusive_result` is a Dart package inspired by `dartz` and `result_dart`. It offers enhanced functionality for handling optional values and operation results through `Option` and `Result` types, alongside the `Unit` type and `id` function for functional programming paradigms in Dart.
+`Codeclusive_result` is a Dart package inspired by [dartz](https://pub.dev/packages/dartz) and [result_dart](https://pub.dev/packages/result_dart). It offers enhanced functionality for handling optional values and operation results through `Option` and `Result` types, alongside the `Unit` type and `id` function for functional programming paradigms in Dart.
 
 ## Features
 
