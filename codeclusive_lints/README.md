@@ -1,14 +1,9 @@
-## Features
+## Codeclusive Lints
 
-codeclusive-lints provides a list of rules for Dart and Flutter created and used by Codeclusive.io.
-Includes flutter-lints and custom set of rules created from [dart linter rules](https://dart.dev/tools/linter-rules)
-
-## Requirements
-- Flutter 3.10.4
-- Dart 3.0.3
+This package provides a list of Dart and Flutter rules used everyday by the Codeclusive. It integrates a set of `flutter-lints` with a custom, opinionated set of rules based on [Dart linter rules](https://dart.dev/tools/linter-rules).
 
 ## Usage
-To use lints please add following line to the proper files:
+To use this package add following line to your `pubspec.yaml` and `analysis_options.yaml`:
 
 pubspec.yaml:
 ```dependencies:
@@ -18,16 +13,15 @@ codeclusive_lints: ^0.0.1
 analysis_options.yaml
 ```include: package:codeclusive_lints/analysis_options.yaml```
 
-## Used rules:
-### Errors
-- [todo](https://dart.dev/tools/diagnostic-messages): ignore
+## Rules:
+### Changed the severity of rules:
 - [prefer_const_constructors](https://dart.dev/tools/linter-rules/prefer_const_constructors): info
 - [missing_required_param](https://dart.dev/tools/diagnostic-messages): error
 - [missing_return](https://dart.dev/tools/diagnostic-messages): error
 - [must_be_immutable](https://dart.dev/tools/diagnostic-messages): error
 - [unnecessary_const](https://dart.dev/tools/linter-rules/unnecessary_const): error
 
-### Lints
+### New Lints
 - [unnecessary_await_in_return](https://dart.dev/tools/linter-rules/unnecessary_await_in_return)
 - [unnecessary_null_checks](https://dart.dev/tools/linter-rules/unnecessary_null_checks)
 - [unnecessary_overrides](https://dart.dev/tools/linter-rules/unnecessary_overrides)
