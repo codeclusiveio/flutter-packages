@@ -9,9 +9,6 @@
 - **Unit Type**: Represent the absence of a specific value, can be used instead of `void`.
 - **Id Function**: A utility for functional composition, it returns the value that is provided in the function passed to it.
 
-## Requirements
-- Flutter >=1.17.0
-
 ## Installation
 
 Add `Codeclusive_result` to your Dart project's `pubspec.yaml` file:
