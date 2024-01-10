@@ -1,9 +1,12 @@
+// Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
+// MIT license that can be found in the LICENSE file.
+
 import 'package:codeclusive_result/codeclusive_result.dart';
 
 extension CCResult<R extends Object> on R {
   ///Wraps the value in a [Some] instance
   Some<R> asSome() {
-    //check if toSome is not performed on an instance of Option
+    //check if toSome is performed on an instance of Some
     if (this is Some<R>) {
       return this as Some<R>;
     } else {

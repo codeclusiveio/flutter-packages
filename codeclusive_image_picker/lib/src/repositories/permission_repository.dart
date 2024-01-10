@@ -1,3 +1,5 @@
+// Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
+// MIT license that can be found in the LICENSE file.
 import 'package:codeclusive_image_picker/src/interfaces/permissions_interface.dart';
 import 'package:codeclusive_image_picker/src/models/permission_exception.dart';
 import 'package:permission_handler/permission_handler.dart';

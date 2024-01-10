@@ -1,4 +1,6 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
+// MIT license that can be found in the LICENSE file.
+
 import 'package:codeclusive_result/codeclusive_result.dart';
 import 'package:codeclusive_result/src/models/option.dart';
 

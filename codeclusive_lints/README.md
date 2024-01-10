@@ -12,11 +12,7 @@ To use lints please add following line to the proper files:
 
 pubspec.yaml:
 ```dependencies:
-codeclusive_lints:
-    git:
-        url: https://github.com/codeclusiveio/flutter-packages.git
-        path: codeclusive_lints
-        ref: c3b8bd1f979fd0b35f2dc418df37f640b4d7e537
+codeclusive_lints: ^0.0.1
 ```
 
 analysis_options.yaml
@@ -111,3 +107,7 @@ analysis_options.yaml
 - [unawaited_futures](https://dart.dev/tools/linter-rules/unawaited_futures)
 - [cast_nullable_to_non_nullable](https://dart.dev/tools/linter-rules/cast_nullable_to_non_nullable)
 - [unnecessary_lambdas](https://dart.dev/tools/linter-rules/unnecessary_lambdas)
+
+
+## License
+Copyright (c) 2023, Codeclusive. Use of this source code is governed by a MIT license that can be found in the LICENSE file.

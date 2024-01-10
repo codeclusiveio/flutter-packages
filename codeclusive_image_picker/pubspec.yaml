@@ -2,9 +2,12 @@ name: codeclusive_image_picker
 description: Codeclusive package to handle picking images from devices.
 version: 0.0.1
 homepage: https://codeclusive.io/
+repository: https://github.com/codeclusiveio/flutter-packages/tree/main/codeclusive_image_picker
+issue_tracker: https://github.com/codeclusiveio/flutter-packages/issues
+documentation: https://github.com/codeclusiveio/flutter-packages/tree/main/codeclusive_image_picker
 
 environment:
-  sdk: '>=3.0.3 <4.0.0'
+  sdk: ">=3.0.3 <4.0.0"
   flutter: ">=3.13.9"
 
 dependencies:
