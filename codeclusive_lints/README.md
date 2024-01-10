@@ -1,17 +1,20 @@
 ## Codeclusive Lints
 
-This package provides a list of Dart and Flutter rules used everyday by the Codeclusive. It integrates a set of `flutter-lints` with a custom, opinionated set of rules based on [Dart linter rules](https://dart.dev/tools/linter-rules).
+This package provides a list of Dart and Flutter rules used everyday by the Codeclusive team. It integrates a set of `flutter-lints` with a custom, opinionated set of rules based on [Dart linter rules](https://dart.dev/tools/linter-rules).
 
 ## Usage
 To use this package add following line to your `pubspec.yaml` and `analysis_options.yaml`:
 
 pubspec.yaml:
-```dependencies:
-codeclusive_lints: ^0.0.1
+```
+dependencies:
+codeclusive_lints: ^0.0.3
 ```
 
-analysis_options.yaml
-```include: package:codeclusive_lints/analysis_options.yaml```
+analysis_options.yaml:
+```
+include: package:codeclusive_lints/analysis_options.yaml
+```
 
 ## Rules:
 ### Changed the severity of rules:
