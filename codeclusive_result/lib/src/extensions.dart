@@ -6,7 +6,7 @@ import 'package:codeclusive_result/codeclusive_result.dart';
 extension CCResult<R extends Object> on R {
   ///Wraps the value in a [Some] instance
   Some<R> asSome() {
-    //check if toSome is not performed on an instance of Option
+    //check if toSome is performed on an instance of Some
     if (this is Some<R>) {
       return this as Some<R>;
     } else {

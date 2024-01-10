@@ -31,23 +31,19 @@ class PermissionsService {
 
         if (sdkVersion >= 33) {
           await _codeclusivePermissionRepository.getPhotosPermissionsAndroid;
-          final androidStatus = await _codeclusivePermissionRepository
-              .getHandlerStatus(Permission.photos);
+          final androidStatus = await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
           return androidStatus;
         } else {
           await _codeclusivePermissionRepository.getStoragePermissionsAndroid;
-          final androidStatus = await _codeclusivePermissionRepository
-              .getHandlerStatus(Permission.storage);
+          final androidStatus = await _codeclusivePermissionRepository.getHandlerStatus(Permission.storage);
           return androidStatus;
         }
       }
 
       await _codeclusivePermissionRepository.getPermissionsIOS;
-      return await _codeclusivePermissionRepository
-          .getHandlerStatus(Permission.photos);
+      return await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
     } catch (e, s) {
-      throw PermissionRequestException(
-          'Error while requesting permissions. Error: $e, stackTrace: $s');
+      throw PermissionRequestException('Error while requesting permissions. Error: $e, stackTrace: $s');
     }
   }
 
@@ -62,18 +58,14 @@ class PermissionsService {
         final androidInfo = await DeviceInfoPlugin().androidInfo;
         final sdkVersion = androidInfo.version.sdkInt;
         if (sdkVersion >= 33) {
-          return await _codeclusivePermissionRepository
-              .getHandlerStatus(Permission.photos);
+          return await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
         } else {
-          return await _codeclusivePermissionRepository
-              .getHandlerStatus(Permission.storage);
+          return await _codeclusivePermissionRepository.getHandlerStatus(Permission.storage);
         }
       }
-      return await _codeclusivePermissionRepository
-          .getHandlerStatus(Permission.photos);
+      return await _codeclusivePermissionRepository.getHandlerStatus(Permission.photos);
     } catch (e, s) {
-      throw PermissionRequestException(
-          'Error while checking permissions. Error: $e, stackTrace: $s');
+      throw PermissionRequestException('Error while checking permissions. Error: $e, stackTrace: $s');
     }
   }
 

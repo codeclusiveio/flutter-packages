@@ -112,8 +112,7 @@ class CCImagePicker {
       final hasAccess = await requestPermissions();
 
       if (hasAccess.isGranted) {
-        final images = await _imagePickerService
-            .fetchPaginatedImages(album, page, maxBatchSize: maxBatchSize);
+        final images = await _imagePickerService.fetchPaginatedImages(album, page, maxBatchSize: maxBatchSize);
         return images;
       }
 

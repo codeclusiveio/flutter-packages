@@ -106,3 +106,5 @@ id is most useful in fold methods. It returns the argument passed to the functio
 final successValue = result.fold((f) => throw Exception(failure), id);
 ```
 
+## License
+Copyright (c) 2023, Codeclusive. Use of this source code is governed by a MIT license that can be found in the LICENSE file.

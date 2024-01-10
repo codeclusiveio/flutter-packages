@@ -28,8 +28,7 @@ class ImagePickerRepository implements ImagePickerInterface {
         onlyAll: false,
       );
     } catch (e, s) {
-      throw GalleryScanException(
-          'Error while fetching album list. Error $e, StackTrace :$s');
+      throw GalleryScanException('Error while fetching album list. Error $e, StackTrace :$s');
     }
     return albums;
   }
@@ -43,8 +42,7 @@ class ImagePickerRepository implements ImagePickerInterface {
     try {
       count = await PhotoManager.getAssetCount();
     } catch (e, s) {
-      throw GalleryScanException(
-          'Error while getting assets count. Error: $e, stackTrace: $s');
+      throw GalleryScanException('Error while getting assets count. Error: $e, stackTrace: $s');
     }
     return count;
   }
