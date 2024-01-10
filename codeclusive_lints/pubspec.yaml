@@ -1,6 +1,6 @@
 name: codeclusive_lints
-description: Lint rules for Dart and Flutter created and used by CodeClusive.
-version: 0.0.1
+description: Opinionated list of lints used everyday by Codeclusive team.
+version: 0.0.3
 homepage: https://codeclusive.io/
 repository: https://github.com/codeclusiveio/flutter-packages/tree/codeclusive-lints/codeclusive_lints
 issue_tracker: https://github.com/codeclusiveio/flutter-packages/issues
