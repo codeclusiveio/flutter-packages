@@ -1,4 +1,1 @@
-include: ../lib/analysis_options.yaml
-analyzer:
-  exclude:
-    - "example"
+include: lib/analysis_options.yaml
