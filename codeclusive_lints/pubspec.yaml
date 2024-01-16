@@ -1,6 +1,6 @@
 name: codeclusive_lints
 description: Opinionated list of lints used everyday by Codeclusive team.
-version: 0.0.3
+version: 0.0.4
 homepage: https://codeclusive.io/
 repository: https://github.com/codeclusiveio/flutter-packages/tree/codeclusive-lints/codeclusive_lints
 issue_tracker: https://github.com/codeclusiveio/flutter-packages/issues
