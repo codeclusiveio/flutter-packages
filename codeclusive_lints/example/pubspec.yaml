@@ -1,0 +1,14 @@
+name : codeclusive_lints_example
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.4"
+
+dependencies:
+  codeclusive_lints:
+    path: ../
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
