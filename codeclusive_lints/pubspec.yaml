@@ -1,10 +1,10 @@
 name: codeclusive_lints
 description: Opinionated list of lints used everyday by Codeclusive team.
-version: 0.0.4
+version: 0.0.5
 homepage: https://codeclusive.io/
-repository: https://github.com/codeclusiveio/flutter-packages/tree/codeclusive-lints/codeclusive_lints
+repository: https://github.com/codeclusiveio/flutter-packages/tree/main/codeclusive_lints
 issue_tracker: https://github.com/codeclusiveio/flutter-packages/issues
-documentation: https://github.com/codeclusiveio/flutter-packages/tree/codeclusive-lints/codeclusive_lints
+documentation: https://github.com/codeclusiveio/flutter-packages/tree/main/codeclusive_lints
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
