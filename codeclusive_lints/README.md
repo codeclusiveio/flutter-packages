@@ -8,7 +8,7 @@ To use this package add following line to your `pubspec.yaml` and `analysis_opti
 pubspec.yaml:
 ```
 dependencies:
-codeclusive_lints: ^0.0.4
+codeclusive_lints: ^0.0.5
 ```
 
 analysis_options.yaml:
