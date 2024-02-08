@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:codeclusive_image_picker/cc_image_picker.dart';
 import 'package:example/single_image_view.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -37,10 +40,12 @@ class _MyHomePageState extends State<MyHomePage> {
   String _statistics = 'Click button to show statistics';
   String _permissions = 'Click button to check permissions';
   List<AssetEntity> _images = [];
+  XFile? _cameraImage;
 
   CCImagePicker codeclusiveImagePicker = CCImagePicker();
 
-  void _showGalleryStatistics(List<AssetPathEntity> albums, List<AssetEntity> images) {
+  void _showGalleryStatistics(
+      List<AssetPathEntity> albums, List<AssetEntity> images) {
     setState(() {
       _statistics = 'Selected albums: ${albums.map((e) => e.name).toString()}';
       _images = images;
@@ -72,25 +77,32 @@ class _MyHomePageState extends State<MyHomePage> {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(
-                height: 32,
-              ),
+              const SizedBox(height: 32),
               Text(
                 _statistics,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(
-                height: 32,
-              ),
+              const SizedBox(height: 32),
+              if (_cameraImage != null) const Text('Taken image from camera:'),
+              if (_cameraImage != null)
+                SizedBox(
+                  height: 200,
+                  child: Image.file(
+                    File(_cameraImage!.path),
+                    fit: BoxFit.contain,
+                  ),
+                ),
               _images.isNotEmpty
                   ? SizedBox(
                       width: 400,
                       height: 400,
                       child: GridView.builder(
                         itemCount: _images.length,
-                        itemBuilder: (context, index) => SingleImageView(asset: _images[index]),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        itemBuilder: (context, index) =>
+                            SingleImageView(asset: _images[index]),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3,
                           mainAxisSpacing: 8,
                           crossAxisSpacing: 8,
@@ -106,8 +118,19 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           FloatingActionButton(
             onPressed: () async {
+              final takenPhoto = await codeclusiveImagePicker.takePhoto();
+              setState(() {
+                _cameraImage = takenPhoto;
+              });
+            },
+            child: const Icon(Icons.camera),
+          ),
+          const SizedBox(width: 16),
+          FloatingActionButton(
+            onPressed: () async {
               final albums = await codeclusiveImagePicker.getAlbums();
-              final images = await codeclusiveImagePicker.getImagesFromAlbum(albums[0]);
+              final images =
+                  await codeclusiveImagePicker.getImagesFromAlbum(albums[0]);
               _showGalleryStatistics([albums[0]], images);
             },
             tooltip: 'Scan gallery',

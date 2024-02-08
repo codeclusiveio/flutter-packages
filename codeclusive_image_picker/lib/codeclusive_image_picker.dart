@@ -1,8 +1,10 @@
 // Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
 // MIT license that can be found in the LICENSE file.
 
+import 'package:codeclusive_image_picker/src/services/camera_picker_service.dart';
 import 'package:codeclusive_image_picker/src/services/image_picker_service.dart';
 import 'package:codeclusive_image_picker/src/services/permissions_service.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -20,10 +22,12 @@ import 'package:photo_manager/photo_manager.dart';
 /// - [READ_MEDIA_VIDEO]
 class CCImagePicker {
   late final ImagePickerService _imagePickerService;
+  late final CameraPickerService _cameraPickerService;
   late final PermissionsService _permissionsService;
 
   CCImagePicker() {
     _imagePickerService = ImagePickerService();
+    _cameraPickerService = CameraPickerService();
     _permissionsService = PermissionsService();
   }
 
@@ -112,7 +116,8 @@ class CCImagePicker {
       final hasAccess = await requestPermissions();
 
       if (hasAccess.isGranted) {
-        final images = await _imagePickerService.fetchPaginatedImages(album, page, maxBatchSize: maxBatchSize);
+        final images = await _imagePickerService
+            .fetchPaginatedImages(album, page, maxBatchSize: maxBatchSize);
         return images;
       }
 
@@ -139,4 +144,24 @@ class CCImagePicker {
       rethrow;
     }
   }
+
+  /// Opens native camera popup. If image was taken successfully, returns [XFile] which contains all gathered EXIF metadata.
+  ///
+  /// On exception, throws [TakePhotoExceptions].
+  ///
+  /// Optional settings:
+  ///
+  /// - [maxHeight] and [maxWidth] declare maximum width and height of taken image. If these are null, image will be returned in it's original size.
+  ///
+  /// - [imageQuality] is represented by int value, accepts numbers between 0 and 100, where 100 is the original quality of taken image.
+  Future<XFile?> takePhoto({
+    int? imageQuality,
+    double? maxWidth,
+    double? maxHeight,
+  }) async =>
+      _cameraPickerService.takePhoto(
+        imageQuality: imageQuality,
+        maxWidth: maxWidth,
+        maxHeight: maxHeight,
+      );
 }
