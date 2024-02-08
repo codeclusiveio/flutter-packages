@@ -3,3 +3,5 @@
 library codeclusive_image_picker;
 
 export 'codeclusive_image_picker.dart';
+export '/src/models/image_picker_exception.dart';
+export '/src/models/permission_exception.dart';
