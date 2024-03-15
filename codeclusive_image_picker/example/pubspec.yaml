@@ -14,7 +14,7 @@ dependencies:
     path: ../
   image_picker: ^1.0.7
   permission_handler_platform_interface: ^3.7.0
-  photo_manager: ^2.8.1
+  photo_manager: ^2.7.1
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
