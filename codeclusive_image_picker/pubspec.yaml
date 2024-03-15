@@ -15,7 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   image_picker: ^1.0.7
-  photo_manager: ^2.7.1
+  photo_manager: ^2.5.1+1
   permission_handler: ^10.2.0
   collection: ^1.16.0
   logger: ^2.0.2+1
