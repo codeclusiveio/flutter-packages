@@ -1,4 +1,4 @@
-// Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
+// Copyright (c) 2024, Codeclusive. Use of this source code is governed by a
 // MIT license that can be found in the LICENSE file.
 
 import 'package:permission_handler/permission_handler.dart';

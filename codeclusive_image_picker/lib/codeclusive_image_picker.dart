@@ -1,4 +1,4 @@
-// Copyright (c) 2023, Codeclusive. Use of this source code is governed by a
+// Copyright (c) 2024, Codeclusive. Use of this source code is governed by a
 // MIT license that can be found in the LICENSE file.
 
 import 'package:codeclusive_image_picker/src/services/image_picker_service.dart';
@@ -112,7 +112,8 @@ class CCImagePicker {
       final hasAccess = await requestPermissions();
 
       if (hasAccess.isGranted) {
-        final images = await _imagePickerService.fetchPaginatedImages(album, page, maxBatchSize: maxBatchSize);
+        final images = await _imagePickerService
+            .fetchPaginatedImages(album, page, maxBatchSize: maxBatchSize);
         return images;
       }
 
