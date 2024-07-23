@@ -2,7 +2,7 @@ PODS:
   - device_info_plus (0.0.1):
     - Flutter
   - Flutter (1.0.0)
-  - permission_handler_apple (9.1.1):
+  - permission_handler_apple (9.3.0):
     - Flutter
   - photo_manager (2.0.0):
     - Flutter
@@ -25,11 +25,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/photo_manager/ios"
 
 SPEC CHECKSUMS:
-  device_info_plus: c6fb39579d0f423935b0c9ce7ee2f44b71b9fce6
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  permission_handler_apple: e76247795d700c14ea09e3a2d8855d41ee80a2e6
-  photo_manager: 4f6810b7dfc4feb03b461ac1a70dacf91fba7604
+  device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
+  photo_manager: ff695c7a1dd5bc379974953a2b5c0a293f7c4c8a
 
-PODFILE CHECKSUM: e55de0ac53c2cfeca98642dd28f8a05da927811b
+PODFILE CHECKSUM: 61c9cf099f452e52f4a448c28b40c916b878af66
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2
