@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:codeclusive_image_picker/cc_image_picker.dart';
-import 'package:example/single_image_view.dart';
+import 'package:codeclusive_image_picker_example/single_image_view.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
@@ -37,7 +37,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _statistics = 'Click button to show statistics';
+  String _selectedAlbum = 'Click button to show statistics';
+  String _albumLength = '';
   String _permissions = 'Click button to check permissions';
   List<AssetEntity> _images = [];
   XFile? _cameraImage;
@@ -47,14 +48,16 @@ class _MyHomePageState extends State<MyHomePage> {
   void _showGalleryStatistics(
       List<AssetPathEntity> albums, List<AssetEntity> images) {
     setState(() {
-      _statistics = 'Selected albums: ${albums.map((e) => e.name).toString()}';
+      _selectedAlbum =
+          'Selected albums: ${albums.map((e) => e.name).toString()}';
+      _albumLength = 'Albums length: ${images.length}';
       _images = images;
     });
   }
 
   void _showPermissionsSettings(bool permissions) {
     setState(() {
-      _permissions = permissions.toString();
+      _permissions = permissions ? 'Granted' : 'Denied';
     });
   }
 
@@ -68,20 +71,72 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+          child: ListView(
             children: <Widget>[
               Text(
                 'Permissions: $_permissions',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              const SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: () async {
+                  await codeclusiveImagePicker
+                      .requestPermissions()
+                      .then((value) {
+                    if (value.isPermanentlyDenied || value.isDenied) {
+                      codeclusiveImagePicker.goToAppSettings();
+                    }
+
+                    _showPermissionsSettings(value.isGranted);
+                    return value;
+                  });
+                },
+                child: const Text('Check permissions'),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
               Text(
-                _statistics,
+                _selectedAlbum,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              Text(
+                _albumLength,
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final albums = await codeclusiveImagePicker.getAlbums();
+                  final images = await codeclusiveImagePicker
+                      .getImagesFromAlbum(albums[0]);
+                  _showGalleryStatistics([albums[0]], images);
+                },
+                child: const Text('Get Recent Album'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final albums = await codeclusiveImagePicker.getAlbums();
+                  final images = await codeclusiveImagePicker.getAllImages();
+                  _showGalleryStatistics(albums, images);
+                },
+                child: const Text('Scan gallery'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  final takenPhoto = await codeclusiveImagePicker.takePhoto();
+                  setState(() {
+                    _cameraImage = takenPhoto;
+                  });
+                },
+                child: const Text('Take photo'),
               ),
               const SizedBox(height: 32),
               if (_cameraImage != null) const Text('Taken image from camera:'),
@@ -112,60 +167,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ],
           ),
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () async {
-              final takenPhoto = await codeclusiveImagePicker.takePhoto();
-              setState(() {
-                _cameraImage = takenPhoto;
-              });
-            },
-            child: const Icon(Icons.camera),
-          ),
-          const SizedBox(width: 16),
-          FloatingActionButton(
-            onPressed: () async {
-              final albums = await codeclusiveImagePicker.getAlbums();
-              final images =
-                  await codeclusiveImagePicker.getImagesFromAlbum(albums[0]);
-              _showGalleryStatistics([albums[0]], images);
-            },
-            tooltip: 'Scan gallery',
-            child: const Icon(Icons.sync),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          FloatingActionButton(
-            onPressed: () async {
-              final albums = await codeclusiveImagePicker.getAlbums();
-              final images = await codeclusiveImagePicker.getAllImages();
-              _showGalleryStatistics(albums, images);
-            },
-            tooltip: 'Scan gallery',
-            child: const Icon(Icons.all_inclusive),
-          ),
-          const SizedBox(
-            width: 16,
-          ),
-          FloatingActionButton(
-            onPressed: () async {
-              await codeclusiveImagePicker.requestPermissions().then((value) {
-                if (value.isPermanentlyDenied || value.isDenied) {
-                  codeclusiveImagePicker.goToAppSettings();
-                }
-
-                _showPermissionsSettings(value.isGranted);
-                return value;
-              });
-            },
-            tooltip: 'Check permissions',
-            child: const Icon(Icons.security),
-          ),
-        ],
       ),
     );
   }
