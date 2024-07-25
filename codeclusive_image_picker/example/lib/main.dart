@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:codeclusive_image_picker/cc_image_picker.dart';
 import 'package:codeclusive_image_picker_example/single_image_view.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler_platform_interface/permission_handler_platform_interface.dart';
 import 'package:photo_manager/photo_manager.dart';
 
@@ -38,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String _albumLength = '';
   String _permissions = 'Click button to check permissions';
   List<AssetEntity> _images = [];
+  XFile? _cameraImage;
 
   CCImagePicker codeclusiveImagePicker = CCImagePicker();
 
@@ -117,9 +121,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text('Get Recent Album'),
               ),
-              const SizedBox(
-                width: 16,
-              ),
               ElevatedButton(
                 onPressed: () async {
                   final albums = await codeclusiveImagePicker.getAlbums();
@@ -128,9 +129,25 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text('Scan gallery'),
               ),
-              const SizedBox(
-                height: 16,
+              ElevatedButton(
+                onPressed: () async {
+                  final takenPhoto = await codeclusiveImagePicker.takePhoto();
+                  setState(() {
+                    _cameraImage = takenPhoto;
+                  });
+                },
+                child: const Text('Take photo'),
               ),
+              const SizedBox(height: 32),
+              if (_cameraImage != null) const Text('Taken image from camera:'),
+              if (_cameraImage != null)
+                SizedBox(
+                  height: 200,
+                  child: Image.file(
+                    File(_cameraImage!.path),
+                    fit: BoxFit.contain,
+                  ),
+                ),
               _images.isNotEmpty
                   ? SizedBox(
                       width: 400,
