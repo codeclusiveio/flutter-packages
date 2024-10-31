@@ -24,9 +24,17 @@ class PermissionRepository implements PermissionsInterface {
   ///
   /// When error occurs this method throws [PermissionRequestException]
   @override
-  Future<PermissionStatus> get getPhotosPermissionsAndroid async {
+  Future<PermissionState> get getPhotosPermissionsAndroid async {
     try {
-      return await Permission.photos.request();
+      return await PhotoManager.requestPermissionExtend(
+        requestOption: const PermissionRequestOption(
+          androidPermission: AndroidPermission(
+            type: RequestType.image,
+            mediaLocation: true,
+          ),
+          iosAccessLevel: IosAccessLevel.readWrite,
+        ),
+      );
     } catch (s, e) {
       throw PermissionRequestException(
           'Error while requesting photos permissions. Error: $e, stackTrace: $s');
@@ -39,7 +47,15 @@ class PermissionRepository implements PermissionsInterface {
   @override
   Future<PermissionState> get getPermissionsIOS async {
     try {
-      return await PhotoManager.requestPermissionExtend();
+      return await PhotoManager.requestPermissionExtend(
+        requestOption: const PermissionRequestOption(
+          androidPermission: AndroidPermission(
+            type: RequestType.image,
+            mediaLocation: true,
+          ),
+          iosAccessLevel: IosAccessLevel.readWrite,
+        ),
+      );
     } catch (s, e) {
       throw PermissionRequestException(
           'Error while requesting photos permissions. Error: $e, stackTrace: $s');

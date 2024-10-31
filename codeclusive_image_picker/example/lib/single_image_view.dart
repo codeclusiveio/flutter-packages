@@ -14,12 +14,14 @@ class SingleImageView extends StatefulWidget {
   State<SingleImageView> createState() => _SingleImageViewState();
 }
 
-class _SingleImageViewState extends State<SingleImageView> with SingleTickerProviderStateMixin {
+class _SingleImageViewState extends State<SingleImageView>
+    with SingleTickerProviderStateMixin {
   late Future<Uint8List?> imageFuture;
 
   @override
   void initState() {
-    imageFuture = widget.asset.thumbnailDataWithSize(const ThumbnailSize.square(200), quality: 20);
+    imageFuture = widget.asset
+        .thumbnailDataWithSize(const ThumbnailSize.square(200), quality: 20);
     super.initState();
   }
 
@@ -36,7 +38,11 @@ class _SingleImageViewState extends State<SingleImageView> with SingleTickerProv
             if (image == null) {
               return const SizedBox.shrink();
             }
-            return SizedBox(width: 50, height: 50, child: Image.memory(image, fit: BoxFit.cover));
+            return SizedBox(
+              width: 50,
+              height: 50,
+              child: Image.memory(image, fit: BoxFit.cover),
+            );
           }
 
           return const SizedBox.shrink();
