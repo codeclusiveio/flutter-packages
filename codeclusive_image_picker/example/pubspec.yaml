@@ -2,7 +2,7 @@ name: codeclusive_image_picker_example
 description: Codeclusive image picker example project
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.1
 
 environment:
   sdk: '>=3.0.3 <4.0.0'
@@ -12,16 +12,16 @@ dependencies:
     sdk: flutter
   codeclusive_image_picker:
     path: ../
-  permission_handler_platform_interface: ^4.2.3
-  photo_manager: ^3.5.2
+  permission_handler_platform_interface: ^4.3.0
+  photo_manager: ^3.7.1
   image_picker: ^1.1.2
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^4.0.0
-  permission_handler: ^11.3.1
+  flutter_lints: ^6.0.0
+  permission_handler: ^12.0.1
 
 flutter:
   uses-material-design: true

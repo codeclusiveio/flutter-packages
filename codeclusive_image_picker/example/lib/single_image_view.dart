@@ -4,9 +4,9 @@ import 'package:photo_manager/photo_manager.dart';
 
 class SingleImageView extends StatefulWidget {
   const SingleImageView({
-    Key? key,
+    super.key,
     required this.asset,
-  }) : super(key: key);
+  });
 
   final AssetEntity asset;
 
