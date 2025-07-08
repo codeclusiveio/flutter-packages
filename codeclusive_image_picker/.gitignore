@@ -29,9 +29,11 @@ migrate_working_dir/
 .packages
 build/
 
-
 **/.flutter-plugins
 **/.flutter-plugins-dependencies
 **/.fvm
 CHANGELOG.md
 codeclusive_image_picker.iml
+
+# FVM Version Cache
+.fvm/
