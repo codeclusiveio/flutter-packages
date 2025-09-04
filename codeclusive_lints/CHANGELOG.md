@@ -1,3 +1,6 @@
+## 0.0.5
+Fixed repo url
+
 ## 0.0.4
 Provided example / static analysis fixes / documentation
 
